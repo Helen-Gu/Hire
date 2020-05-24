@@ -61,7 +61,7 @@ export default function Register(props) {
   const toLogin = () => {
     props.history.replace("/login");
   };
-  console.log({ password, userType });
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -148,7 +148,7 @@ export default function Register(props) {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link onClick={toLogin} variant="body2">
+              <Link component="button" onClick={toLogin} variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

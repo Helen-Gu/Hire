@@ -50,9 +50,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props) {
   const classes = useStyles();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [rememberMe, setRememberMe] = React.useState(false);
+
   const toRegister = () => {
     props.history.replace("/register");
   };
+  console.log({email, password, rememberMe})
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -65,6 +70,7 @@ export default function SignIn(props) {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            value={email}
             variant="outlined"
             margin="normal"
             required
@@ -74,8 +80,10 @@ export default function SignIn(props) {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(event) => setEmail(event.target.value)}
           />
           <TextField
+            value={password}
             variant="outlined"
             margin="normal"
             required
@@ -85,9 +93,17 @@ export default function SignIn(props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(event) => setPassword(event.target.value)}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={
+              <Checkbox
+                value="remember"
+                color="primary"
+                checked={rememberMe}
+                onChange={(event) => setRememberMe(event.target.checked)}
+              />
+            }
             label="Remember me"
           />
           <Button
@@ -106,7 +122,7 @@ export default function SignIn(props) {
               </Link>
             </Grid>
             <Grid item>
-              <Link onClick={toRegister} variant="body2">
+              <Link component="button" onClick={toRegister} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
