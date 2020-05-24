@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDom from "react-dom";
+import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -9,7 +9,7 @@ import Login from "./containers/login/login";
 import Main from "./containers/main/main";
 
 
-ReactDom.render(
+ReactDOM.render((
     <Provider store={store}>
         <HashRouter>
             <Switch>
@@ -18,6 +18,6 @@ ReactDom.render(
                 <Route component={Main}></Route> {/* default component */}
             </Switch>
         </HashRouter>
-    </Provider>,
-    document.getElementById('root')
+    </Provider>
+), document.getElementById('root')
 )
