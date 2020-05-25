@@ -1,6 +1,6 @@
 {
-  "name": "hire-client",
-  "version": "0.1.0",
+  "name": "client",
+  "version": "1.0.0",
   "private": true,
   "author": "Helen Gu",
   "dependencies": {
