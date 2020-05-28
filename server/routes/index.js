@@ -12,7 +12,12 @@ router.get("/", function (req, res, next) {
   2. processing
   3. return res
 */
-router.post("/register", function (req, res) {
+router.post("/register", (req, res) => {
   const { firstName, lastName, email, passWord } = req.body;
+  if (email === 'helengu1996@gmail.com') {
+    res.send({ code: 1, msg: 'usar already exists' });
+  } else {
+    res.send({ code: 0, data: {id: '123', firstName, lastName }})
+  }
 });
 module.exports = router;
