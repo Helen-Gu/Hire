@@ -7,10 +7,16 @@
     replaceReducer(nextReducer)
 */
 import { createStore, applyMiddleware } from "redux";
+/* 
+    middleware for Redux that allows us to directly access the dispatch method 
+    to make asynchronous calls from our actions
+*/
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-// a console which set up development environment to 
-// visualize actions and state changes that take place in a redux application
-import reducers from "./reducers"
 
-export default createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+import reducers from "./reducers";
+
+export default createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(thunk))
+);

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+// structure: name: value, if nullable
 const Schema = mongoose.Schema;
 
 /* 
@@ -34,4 +35,4 @@ const UserSchema = new Schema({
     Defines a model or retrieves it. Models defined on the mongoose instance 
     are available to all connection created by the same mongoose instance.
 */
-module.exports = User = mongoose.model("users", UserSchema);
+module.exports = UserModel = mongoose.model("users", UserSchema);
