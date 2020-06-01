@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
-import RadioButtonsGroup from "./radioGroup";
+import RadioButtonsGroup from "./RadioGroup";
 
 function Copyright() {
   return (

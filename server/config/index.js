@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 
-/ Set the NODE_ENV to 'development' by default
+// Set the NODE_ENV to 'development' by default
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const envFound = dotenv.config();

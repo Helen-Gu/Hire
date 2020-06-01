@@ -30,9 +30,18 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  info: {
+    type: String,
+  },
+  company: {
+    type: String,
+  },
+  salary: {
+    trype: String,
+  }
 });
 /* 
     Defines a model or retrieves it. Models defined on the mongoose instance 
     are available to all connection created by the same mongoose instance.
 */
-module.exports = UserModel = mongoose.model("users", UserSchema);
+module.exports = mongoose.model("users", UserSchema);
