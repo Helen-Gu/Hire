@@ -1,10 +1,7 @@
 /* 
-    A store holds the whole state tree of your application. 
-    The only way to change the state inside it is to dispatch an action on it.
-    getState()
-    dispatch(action)
-    subscribe(listener)
-    replaceReducer(nextReducer)
+  createStore() creates a Redux store that holds the complete state tree of your app.
+  There should only be a single store in your app
+  store sends application state to React components, which will react accordingly to that state
 */
 import { createStore, applyMiddleware } from "redux";
 /* 
@@ -14,9 +11,12 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import reducers from "./reducers";
+import rootReducer from "./reducers";
 
+const initialState = {};
+const middleware = [thunk];
 export default createStore(
-  reducers,
+  rootReducer,
+  initialState,
   composeWithDevTools(applyMiddleware(thunk))
 );

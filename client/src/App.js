@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store from "./store";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Main from "./containers/main/main";
