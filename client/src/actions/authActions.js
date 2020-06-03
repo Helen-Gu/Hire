@@ -4,13 +4,17 @@ import jwt_decode from "jwt-decode";
 
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
-
+/* 
+  mapDispatchToProps -- used for dispatching actions to the store 
+*/
 // register user
 export const registerUser = (userData, history) => (dispatch) => {
   axios
     .post("/api/users/register", userData)
     .then((res) => history.push("/login"))
-    .catch((err) =>
+    .catch((
+      err // dispatch an action object
+    ) =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data,
@@ -25,7 +29,7 @@ export const loginUser = (userData) => (dispatch) => {
     .then((res) => {
       // save token to localStorage
       const { token } = res.data;
-      localStorage.setItem("jwtToken", token);
+      localStorage.setItem("jwtToken", JSON.stringify(token));
       // set token to Auth header
       setAuthToken(token);
       const decoded = jwt_decode(token);
@@ -40,6 +44,19 @@ export const loginUser = (userData) => (dispatch) => {
     );
 };
 
+export const logoutUser = () => (dispatch) => {
+  // remove token from local storage
+  localStorage.removeItem("jwtToken");
+  // remove auth header for future request
+  setAuthToken(false);
+  // set current user to empty object {} which will set
+  // isAuthenticated to false
+  dispatch(setCurrentUser({}));
+};
+
+/* 
+  action creators
+*/
 export const setCurrentUser = (decoded) => {
   return {
     type: SET_CURRENT_USER,
@@ -51,14 +68,4 @@ export const setUserLoading = () => {
   return {
     type: USER_LOADING,
   };
-};
-
-export const logoutUser = () => (dispatch) => {
-  // remove token from local storage
-  localStorage.removeItem("jwtToken");
-  // remove auth header for future request
-  setAuthToken(false);
-  // set current user to empty object {} which will set
-  // isAuthenticated to false
-  dispatch(setCurrentUser({}));
 };

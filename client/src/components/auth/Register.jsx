@@ -26,7 +26,12 @@ class Register extends Component {
       });
     }
   }
-
+  componentDidMount() {
+    // if logged in and user navigate to Login page, should redirect them to /dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -72,7 +77,7 @@ class Register extends Component {
                     invalid: errors.firstName,
                   })}
                 />
-                <label htmlFor="name">First Name</label>
+                <label htmlFor="firstName">First Name</label>
                 <span className="red-text">{errors.firstName}</span>
               </div>
               <div className="input-field col s6">
@@ -86,7 +91,7 @@ class Register extends Component {
                     invalid: errors.lastName,
                   })}
                 />
-                <label htmlFor="name">Last Name</label>
+                <label htmlFor="lastName">Last Name</label>
                 <span className="red-text">{errors.lastName}</span>
               </div>
               <div className="input-field col s12">
@@ -158,8 +163,9 @@ Register.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
-// allow us to get state from Redux
-// and map it to props
+
+// mapStateToProps describes how to transform the currentr Redux store state
+// into the props you want to pass to a presentational component you are wrapping
 const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,

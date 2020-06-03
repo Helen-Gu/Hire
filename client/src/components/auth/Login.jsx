@@ -16,12 +16,18 @@ class Login extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard"); // push user to dashboard when they login
+      this.props.history.push("/dashboard"); // push user to /dashboard when they login
     }
     if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors,
       });
+    }
+  }
+  componentDidMount() {
+    // if logged in and user navigate to Register page, should redirect them to /dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
     }
   }
   onChange = (e) => {
@@ -115,6 +121,13 @@ Login.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
+
+/* 
+  mapStateToProps is used for selecting the part of the data from the store
+  that the connected component needs. (return a plain object)
+    ** It is called every time the store state changes
+    ** It receives the entire store state, and should return an object of data this component needs
+*/
 const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,
