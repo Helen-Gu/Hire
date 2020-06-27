@@ -30,7 +30,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "acorn": "^6.0.0",
+    "acorn": "^6.4.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "eslint": "^5.16.0",
