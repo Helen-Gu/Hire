@@ -9,6 +9,7 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
 import Register from "./components/auth/Register";
+import EmployerRegister from "./components/auth/EmployerRegister";
 import Login from "./components/auth/Login";
 import Main from "./containers/main/main";
 import NavBar from "./components/layout/Navbar";
@@ -43,6 +44,7 @@ class App extends Component {
             <NavBar />
             {/* <Route exact path="/" component={Landing} /> */}
             <Route exact path="/register" component={Register} />
+            <Route exact path="/employer-register" component={EmployerRegister} />
             <Route exact path="/login" component={Login} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />

@@ -7,16 +7,19 @@ import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import classnames from 'classnames';
 
-class Register extends Component {
+class EmployerRegister extends Component {
 	constructor() {
 		super();
 		this.state = {
 			firstName: '',
 			lastName: '',
 			email: '',
+			phone: '',
+			jobTitle: '',
+			company: '',
 			password: '',
 			confirmPassword: '',
-			userType: 'applicant',
+			userType: 'recruiter',
 			city: '',
 			query: '',
 			errors: {},
@@ -50,6 +53,9 @@ class Register extends Component {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
 			email: this.state.email,
+			phone: this.state.phone,
+			jobTitle: this.state.jobTitle,
+			company: this.state.company,
 			password: this.state.password,
 			confirmPassword: this.state.confirmPassword,
 			userType: this.state.userType,
@@ -67,7 +73,7 @@ class Register extends Component {
 		/*global google*/
 
 		this.autocomplete = new google.maps.places.Autocomplete(
-			document.getElementById('address'),
+			document.getElementById('city'),
 			options
 		);
 
@@ -97,8 +103,8 @@ class Register extends Component {
 			});
 		}
 	};
-
 	render() {
+		console.log('this.state', this.state);
 		const { errors } = this.state;
 		return (
 			<div className="container">
@@ -119,17 +125,15 @@ class Register extends Component {
 						<div className="col s12 m6">
 							<div className="row">
 								<div className="col s12">
-									<ul className="tabs tabs-fixed-width tab-demo">
+									<ul className="tabs tabs-fixed-width">
+										<li className="tab col s6">
+											<a href="#register">Talent</a>
+										</li>
 										<li className="tab col s6">
 											<a
 												className="active"
-												href="/#register"
+												href="/#employer-register"
 											>
-												Talent
-											</a>
-										</li>
-										<li className="tab col s6">
-											<a href="/#employer-register">
 												Employer
 											</a>
 										</li>
@@ -140,10 +144,7 @@ class Register extends Component {
 									className="text-light center-align"
 								>
 									<h5>We Bring Job Offers to You</h5>
-									<p>
-										Join thousands of people who’ve found
-										their dream job using Hire.
-									</p>
+									<p>Make quality hires faster with Hire</p>
 								</section>
 							</div>
 							<section>
@@ -188,46 +189,91 @@ class Register extends Component {
 										error={errors.email}
 										id="email"
 										type="email"
-										placeholder="you@example.com"
 										className={classnames('', {
 											invalid: errors.email,
 										})}
 									/>
-									<label htmlFor="email" className="active">
-										Email
-									</label>
+									<label htmlFor="email">Work Email</label>
 									<span className="red-text">
 										{errors.email}
 									</span>
 								</div>
-								<div className="input-field col s12">
+								<div className="input-field col s12 m6">
+									<input
+										onChange={this.onChange}
+										value={this.state.phone}
+										error={errors.phone}
+										id="phone"
+										type="tel"
+										className={classnames('', {
+											invalid: errors.phone,
+										})}
+									/>
+									<label htmlFor="phone">Phone</label>
+									<span className="red-text">
+										{errors.phone}
+									</span>
+								</div>
+								<div className="input-field col s12 m6">
 									<Script
 										url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLbL6to8MEisFeDyEjyQo4JjH-2GYp_14&libraries=places&language=en"
 										onLoad={this.handleScriptLoad}
 									/>
 									<input
-										id="address"
+										id="city"
 										onChange={(event) =>
 											this.setState({
 												query: event.target.value,
 											})
 										}
 										type="text"
-										placeholder="City, State/Country"
+										// placeholder="City, State/Country"
 										value={this.state.query}
 										className={classnames('', {
 											invalid: errors.city,
 										})}
 										autoComplete="none"
 									/>
-									<label htmlFor="address" className="active">
-										Where You Live
+									<label htmlFor="city" className="active">
+										City
 									</label>
 									<span className="red-text">
-										{errors.address}
+										{errors.city}
 									</span>
 								</div>
 								<div className="input-field col s12">
+									<input
+										onChange={this.onChange}
+										value={this.state.jobTitle}
+										error={errors.jobTitle}
+										id="jobTitle"
+										type="text"
+										className={classnames('', {
+											invalid: errors.jobTitle,
+										})}
+									/>
+									<label htmlFor="jobTitle">Job Title</label>
+									<span className="red-text">
+										{errors.jobTitle}
+									</span>
+								</div>
+								<div className="input-field col s12">
+									<input
+										onChange={this.onChange}
+										value={this.state.company}
+										error={errors.company}
+										id="company"
+										type="text"
+										className={classnames('', {
+											invalid: errors.company,
+										})}
+									/>
+									<label htmlFor="company">Company</label>
+									<span className="red-text">
+										{errors.company}
+									</span>
+								</div>
+								<div className="input-field col m6 s12">
 									<input
 										onChange={this.onChange}
 										value={this.state.password}
@@ -243,7 +289,7 @@ class Register extends Component {
 										{errors.password}
 									</span>
 								</div>
-								<div className="input-field col s12">
+								<div className="input-field col m6 s12">
 									<input
 										onChange={this.onChange}
 										value={this.state.confirmPassword}
@@ -261,7 +307,6 @@ class Register extends Component {
 										{errors.confirmPassword}
 									</span>
 								</div>
-
 								{/* <div
 								className="row"
 								style={{ paddingLeft: '11.250px' }}
@@ -321,23 +366,44 @@ class Register extends Component {
 						</div>
 					</form>
 					<div className="col s12 m6">
-						<blockquote className="text-light center-align">
-							<h5>3 Reasons You'll love Hire</h5>
-							<ul className="text-gray-dark xs-epsilon">
-								<li>
-									Companies apply to you, not the other way
-									around.
-								</li>
-								<li>
-									You can hide your info from current and
-									former employers,{' '}
-								</li>
-								<li>plus it’s free for candidates!</li>
-							</ul>
-							<h6 style={{ marginTop: '30px' }}>
-								Get started and find your dream job today!
-							</h6>
-						</blockquote>
+						<div style={{ marginBottom: '12px' }}>
+							<h4>Start a free trial</h4>
+							<p>
+								Save time hiring by focusing on the best
+								technica talent for the job. You'll get:
+							</p>
+							<div />
+							<div>
+								<div>
+									<i className="material-icons small">
+										check
+									</i>{' '}
+									High quality, high intent tech talent
+									uniquely matched to your needs
+								</div>
+								<div>
+									<i className="material-icons small">
+										check
+									</i>{' '}
+									Responsive candidates: 90% respond, 60%
+									accept an interview
+								</div>
+								<div>
+									<i className="material-icons small">
+										check
+									</i>{' '}
+									Candidate’s programming skills are verified
+									with assessments
+								</div>
+								<div>
+									<i className="material-icons small">
+										check
+									</i>{' '}
+									HCandidate’s programming skills are verified
+									with assessments
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -345,7 +411,7 @@ class Register extends Component {
 	}
 }
 
-Register.propTypes = {
+EmployerRegister.propTypes = {
 	registerUser: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired,
@@ -358,4 +424,6 @@ const mapStateToProps = (state) => ({
 	errors: state.errors,
 });
 
-export default connect(mapStateToProps, { registerUser })(withRouter(Register));
+export default connect(mapStateToProps, { registerUser })(
+	withRouter(EmployerRegister)
+);
