@@ -119,7 +119,7 @@ class Register extends Component {
 						<div className="col s12 m6">
 							<div className="row">
 								<div className="col s12">
-									<ul className="tabs tabs-fixed-width tab-demo">
+									<ul className="tabs tabs-fixed-width">
 										<li className="tab col s6">
 											<a
 												className="active"
