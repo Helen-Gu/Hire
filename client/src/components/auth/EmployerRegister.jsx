@@ -104,7 +104,6 @@ class EmployerRegister extends Component {
 		}
 	};
 	render() {
-		console.log('this.state', this.state);
 		const { errors } = this.state;
 		return (
 			<div className="container">
