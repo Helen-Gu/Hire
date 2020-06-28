@@ -22,18 +22,17 @@ class Register extends Component {
 			errors: {},
 		};
 	}
-
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.errors) {
-			this.setState({
-				errors: nextProps.errors,
-			});
-		}
-	}
 	componentDidMount() {
 		// if logged in and user navigate to Login page, should redirect them to /dashboard
 		if (this.props.auth.isAuthenticated) {
 			this.props.history.push('/dashboard');
+		}
+	}
+	componentDidUpdate(prevProps) {
+		if (prevProps.errors !== this.props.errors) {
+			this.setState({
+				errors: this.props.errors,
+			});
 		}
 	}
 	onChange = (e) => {

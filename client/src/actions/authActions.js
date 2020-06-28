@@ -1,4 +1,3 @@
-import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import ajax from '../api/ajax';
@@ -12,10 +11,6 @@ export const registerUser = (userData, history) => async (dispatch) => {
 	const res = await ajax('/api/users/register', userData, 'POST').catch(
 		(err) => {
 			dispatch({
-				type: GET_ERRORS,
-				payload: err.response.data,
-			});
-			console.log({
 				type: GET_ERRORS,
 				payload: err.response.data,
 			});
@@ -60,10 +55,10 @@ export const logoutUser = () => (dispatch) => {
 /* 
   action creators
 */
-export const setCurrentUser = (decoded) => {
+export const setCurrentUser = (user) => {
 	return {
 		type: SET_CURRENT_USER,
-		payload: decoded,
+		payload: user,
 	};
 };
 

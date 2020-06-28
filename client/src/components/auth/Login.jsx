@@ -14,20 +14,23 @@ class Login extends Component {
 			rememberMe: false,
 		};
 	}
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.auth.isAuthenticated) {
-			this.props.history.push('/dashboard'); // push user to /dashboard when they login
-		}
-		if (nextProps.errors) {
-			this.setState({
-				errors: nextProps.errors,
-			});
-		}
-	}
 	componentDidMount() {
 		// if logged in and user navigate to Register page, should redirect them to /dashboard
 		if (this.props.auth.isAuthenticated) {
 			this.props.history.push('/dashboard');
+		}
+	}
+	componentDidUpdate(prevProps) {
+		if (
+			prevProps.auth.isAuthenticated !== this.props.auth.isAuthenticated
+		) {
+			this.props.history.push('/dashboard');
+		}
+
+		if (prevProps.errors !== this.props.errors) {
+			this.setState({
+				errors: this.props.errors,
+			});
 		}
 	}
 	onChange = (e) => {
