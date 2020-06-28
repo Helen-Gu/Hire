@@ -1,5 +1,7 @@
 const express = require('express');
+// a password hashing method
 const bcrypt = require('bcryptjs');
+// an implementation of JSON Web Tokens
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 
@@ -16,7 +18,6 @@ const router = express.Router();
 // @access Public
 router.post('/register', (req, res) => {
 	// Form validation
-
 	const { errors, isValid } = validateRegisterInput(req.body);
 
 	// Check validation
@@ -46,9 +47,9 @@ router.post('/register', (req, res) => {
 				email,
 				city,
 				password,
-        userType,
-        phone,
-        company,
+				userType,
+				phone,
+				company,
 			});
 
 			// Hash password before inserting in DB
@@ -96,6 +97,7 @@ router.post('/login', (req, res) => {
 					id: user.id,
 					firstName: user.firstName,
 					lastName: user.lastName,
+					userType: user.userType,
 				};
 
 				// Sign token

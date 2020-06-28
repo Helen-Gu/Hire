@@ -227,7 +227,6 @@ class EmployerRegister extends Component {
 											})
 										}
 										type="text"
-										// placeholder="City, State/Country"
 										value={this.state.query}
 										className={classnames('', {
 											invalid: errors.city,
