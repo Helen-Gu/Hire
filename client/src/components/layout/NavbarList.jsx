@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class NavbarList extends Component {
 	render() {
 		return (
-			<div>
-				<ul id="nav" className="right hide-on-small-only">
-					{this.props.navs.map((nav) => (
-						<li key={nav.id}>
-							<a href={nav.href}> {nav.title} </a>
-						</li>
-					))}
-				</ul>
-			</div>
+			<React.Fragment>
+				{this.props.navs.map((nav) => (
+					<li key={nav.id}>
+						<Link to={nav.href} className={this.props.className}>
+							{' '}
+							{nav.title}{' '}
+						</Link>
+					</li>
+				))}
+			</React.Fragment>
 		);
 	}
 }
