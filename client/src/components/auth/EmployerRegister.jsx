@@ -126,12 +126,12 @@ class EmployerRegister extends Component {
 								<div className="col s12">
 									<ul className="tabs tabs-fixed-width">
 										<li className="tab col s6">
-											<a href="#register">Talent</a>
+											<a href="/register">Talent</a>
 										</li>
 										<li className="tab col s6">
 											<a
 												className="active"
-												href="/#employer-register"
+												href="/employer-register"
 											>
 												Employer
 											</a>

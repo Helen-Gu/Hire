@@ -12,8 +12,6 @@ class Landing extends Component {
 					<div className="col s12 center-align">
 						<h4>
 							<b>Get matched </b>with a job you love, anywhere.{' '}
-							{/* <span style={{ fontFamily: "monospace" }}>MERN</span> stack from
-              scratch */}
 						</h4>
 						<p className="flow-text grey-text text-darken-1">
 							Create a profile to unlock the opportunity for

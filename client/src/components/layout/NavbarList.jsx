@@ -8,8 +8,7 @@ class NavbarList extends Component {
 				{this.props.navs.map((nav) => (
 					<li key={nav.id}>
 						<Link to={nav.href} className={this.props.className}>
-							{' '}
-							{nav.title}{' '}
+							{nav.title}
 						</Link>
 					</li>
 				))}

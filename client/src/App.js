@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
@@ -15,8 +15,8 @@ import Main from './containers/main/main';
 import Landing from './components/layout/Landing';
 import PrivateRoute from './components/private-route/PrivateRoute';
 import Dashboard from './components/dashboard/Dashboard';
-import EmployerInfo from './components/profile/EmployerInfo'
-import UserInfo from './components/profile/UserInfo'
+import EmployerInfo from './components/profile/EmployerInfo';
+import UserInfo from './components/profile/UserInfo';
 
 // check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -40,7 +40,7 @@ class App extends Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<HashRouter>
+				<BrowserRouter>
 					<div className="App">
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/register" component={Register} />
@@ -68,7 +68,7 @@ class App extends Component {
 							/>
 						</Switch>
 					</div>
-				</HashRouter>
+				</BrowserRouter>
 			</Provider>
 		);
 	}

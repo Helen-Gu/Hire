@@ -116,19 +116,19 @@ class Register extends Component {
 						autoComplete="off"
 					>
 						<div className="col s12 m6">
-							<div className="row">
+							<div className="row col s12">
 								<div className="col s12">
 									<ul className="tabs tabs-fixed-width">
 										<li className="tab col s6">
 											<a
 												className="active"
-												href="/#register"
+												href="/register"
 											>
 												Talent
 											</a>
 										</li>
 										<li className="tab col s6">
-											<a href="/#employer-register">
+											<a href="/employer-register">
 												Employer
 											</a>
 										</li>
@@ -311,7 +311,7 @@ class Register extends Component {
 											letterSpacing: '1.5px',
 										}}
 										type="submit"
-										className="right btn-large waves-effect waves-light hoverable blue accent-3"
+										className="right btn-large waves-effect waves-light hoverable accent-3"
 									>
 										Sign up
 									</button>
